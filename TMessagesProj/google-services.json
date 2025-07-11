@@ -42,6 +42,44 @@
           "other_platform_oauth_client": []
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358671194364:android:c48c36506c675e612a5f79",
+        "android_client_info": {
+          "package_name": "org.telegram.messenger.nur"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApB2uaq--_fws2c9vqlKcHuikC1cdpyHI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358671194364:android:bb6de03ab2bd977a2a5f79",
+        "android_client_info": {
+          "package_name": "org.telegram.messenger.nur.beta"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApB2uaq--_fws2c9vqlKcHuikC1cdpyHI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
     }
   ],
   "configuration_version": "1"
