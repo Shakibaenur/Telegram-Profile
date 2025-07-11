@@ -80,7 +80,6 @@ import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.LaunchActivity;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class StoryViewer implements NotificationCenter.NotificationCenterDelegate, BaseFragment.AttachedSheet {
 
@@ -457,7 +456,8 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                                 showKeyboard();
                                 try {
                                     windowView.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-                                } catch (Exception ignored) {}
+                                } catch (Exception ignored) {
+                                }
                             }
                             swipeToReplyProgress = Utilities.clamp(swipeToReplyOffset / maxOffset, 1f, 0);
                             if (storiesViewPager.getCurrentPeerView() != null) {
@@ -512,7 +512,8 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                             swipeToReplyWaitingKeyboard = true;
                             try {
                                 windowView.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-                            } catch (Exception ignored) {}
+                            } catch (Exception ignored) {
+                            }
                             showKeyboard();
                         }
                     }
@@ -596,7 +597,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                             containerView.getMatrix().mapRect(outFromRectAvatar);
                             containerView.getMatrix().mapRect(outFromRectContainer);
                             //outFromRectContainer.offset(containerView.getX(), containerView.getY());
-                          //  outFromRect.offset(-containerView.getTranslationX(), -containerView.getTranslationY());
+                            //  outFromRect.offset(-containerView.getTranslationX(), -containerView.getTranslationY());
                         }
                     }
 
@@ -619,11 +620,11 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                         float progress2 = progressToOpen;
                         float progressToCircle = progressToOpen;
                         if (isClosed && animateAvatar) {
-                          //  progress2 = 1f - Utilities.clamp((1f - progressToOpen) / 0.8f, 1f, 0);
+                            //  progress2 = 1f - Utilities.clamp((1f - progressToOpen) / 0.8f, 1f, 0);
                             progress2 = progressToOpen;
                             progressToCircle = progressToOpen;//(float) Math.pow(progressToOpen, 1.4f);//progressToOpen;//1f - Utilities.clamp((1f - progressToOpen) / 0.85f, 1f, 0);
                             float startAlpha = 0.8f;
-                            float endAlpha = startAlpha  + 0.1f;
+                            float endAlpha = startAlpha + 0.1f;
                             float alpha = 1f - Utilities.clamp(((1f - progressToOpen) - startAlpha) / (endAlpha - startAlpha), 1f, 0f);
                             progressToCircle = Utilities.clamp(progressToCircle - 0.05f * (1f - alpha), 1f, 0);
                             containerView.setAlpha(alpha);
@@ -633,7 +634,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                         if (isClosed && transitionViewHolder != null && transitionViewHolder.storyImage != null) {
                             containerView.setAlpha(containerView.getAlpha() * (float) Math.pow(progress2, .2f));
                         } else if (isClosed) {
-                           // containerView.setAlpha(Utilities.clamp(progressToOpen / 0.7f, 1f, 0));
+                            // containerView.setAlpha(Utilities.clamp(progressToOpen / 0.7f, 1f, 0));
                         }
                         containerView.setTranslationX((fromX - containerView.getLeft() - containerView.getMeasuredWidth() / 2f) * (1f - progressToOpen) + swipeToDismissHorizontalOffset * progressToOpen);
                         containerView.setTranslationY((fromY - containerView.getTop() - containerView.getMeasuredHeight() / 2f) * (1f - progressToOpen) + swipeToDismissOffset * progressToOpen);
@@ -793,7 +794,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                                     transitionViewHolder.crossfadeToAvatarImage.setVisible(isVisible, false);
                                     transitionViewHolder.crossfadeToAvatarImage.setImageCoords(avatarRectTmp);
                                     transitionViewHolder.crossfadeToAvatarImage.setRoundRadius(oldRadius);
-                                   // transitionViewHolder.crossfadeToAvatarImage.setVisible(false, false);
+                                    // transitionViewHolder.crossfadeToAvatarImage.setVisible(false, false);
                                 }
 
                                 if (transitionViewHolder != null && transitionViewHolder.drawAbove != null) {
@@ -966,7 +967,8 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                                     if ((int) (nowSeek * 10) != (int) (wasSeek * 10)) {
                                         try {
                                             peerView.performHapticFeedback(9, HapticFeedbackConstants.FLAG_IGNORE_VIEW_SETTING);
-                                        } catch (Exception ignore) {}
+                                        } catch (Exception ignore) {
+                                        }
                                     }
                                     peerView.storyContainer.invalidate();
                                     lastTouchX = x;
@@ -1079,6 +1081,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                     Bulletin.addDelegate(this, new Bulletin.Delegate() {
 
                         float[] position = new float[2];
+
                         @Override
                         public int getBottomOffset(int tag) {
                             PeerStoriesView child = getCurrentPeerView();
@@ -1195,7 +1198,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                         volumeControl.setTranslationY(peerStoriesView.storyContainer.getY() - AndroidUtilities.dp(4));
                     }
                     super.dispatchDraw(canvas);
-                  // canvas.drawRect(0, pivotY, getMeasuredWidth(), pivotY + 1, Theme.DEBUG_RED);
+                    // canvas.drawRect(0, pivotY, getMeasuredWidth(), pivotY + 1, Theme.DEBUG_RED);
                 }
             };
             storiesViewPager = new HwStoriesViewPager(context, this, resourcesProvider) {
@@ -1812,10 +1815,10 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         float x = windowView == null ? 0 : windowView.getX();
         float y = windowView == null ? 0 : windowView.getY();
         rectF.set(
-            x + swipeToDismissHorizontalOffset + containerView.getLeft() + page.getX() + page.storyContainer.getX(),
-            y + swipeToDismissOffset + containerView.getTop() + page.getY() + page.storyContainer.getY(),
-            x + swipeToDismissHorizontalOffset + containerView.getRight() - (containerView.getWidth() - page.getRight()) - (page.getWidth() - page.storyContainer.getRight()),
-            y + swipeToDismissOffset + containerView.getBottom() - (containerView.getHeight() - page.getBottom()) - (page.getHeight() - page.storyContainer.getBottom())
+                x + swipeToDismissHorizontalOffset + containerView.getLeft() + page.getX() + page.storyContainer.getX(),
+                y + swipeToDismissOffset + containerView.getTop() + page.getY() + page.storyContainer.getY(),
+                x + swipeToDismissHorizontalOffset + containerView.getRight() - (containerView.getWidth() - page.getRight()) - (page.getWidth() - page.storyContainer.getRight()),
+                y + swipeToDismissOffset + containerView.getBottom() - (containerView.getHeight() - page.getBottom()) - (page.getHeight() - page.storyContainer.getBottom())
         );
         return true;
     }
@@ -1853,7 +1856,8 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         if (activity != null) {
             try {
                 activity.setRequestedOrientation(lock ? ActivityInfo.SCREEN_ORIENTATION_PORTRAIT : ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-            } catch (Exception ignore) {}
+            } catch (Exception ignore) {
+            }
             if (lock) {
                 activity.getWindow().addFlags(FLAG_KEEP_SCREEN_ON);
             } else {
@@ -2053,28 +2057,28 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
 
     public boolean isPaused() {
         return (
-            isPopupVisible ||
-            isTranslating ||
-            isBulletinVisible ||
-            isCaption ||
-            isWaiting ||
-            isInTouchMode ||
-            keyboardVisible ||
-            currentDialog != null ||
-            currentSheet != null ||
-            allowTouchesByViewpager ||
-            isClosed ||
-            isRecording ||
-            progressToOpen != 1f ||
-            selfStoriesViewsOffset != 0 ||
-            isHintVisible ||
-            (isSwiping && USE_SURFACE_VIEW) ||
-            isOverlayVisible ||
-            isInTextSelectionMode ||
-            isLikesReactions ||
-            progressToDismiss != 0 ||
-            storiesIntro != null ||
-            ATTACH_TO_FRAGMENT && fragment != null && fragment.getLastStoryViewer() != this
+                isPopupVisible ||
+                        isTranslating ||
+                        isBulletinVisible ||
+                        isCaption ||
+                        isWaiting ||
+                        isInTouchMode ||
+                        keyboardVisible ||
+                        currentDialog != null ||
+                        currentSheet != null ||
+                        allowTouchesByViewpager ||
+                        isClosed ||
+                        isRecording ||
+                        progressToOpen != 1f ||
+                        selfStoriesViewsOffset != 0 ||
+                        isHintVisible ||
+                        (isSwiping && USE_SURFACE_VIEW) ||
+                        isOverlayVisible ||
+                        isInTextSelectionMode ||
+                        isLikesReactions ||
+                        progressToDismiss != 0 ||
+                        storiesIntro != null ||
+                        ATTACH_TO_FRAGMENT && fragment != null && fragment.getLastStoryViewer() != this
         );
     }
 
@@ -2172,6 +2176,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     private boolean showViewsAfterOpening;
+
     public void showViewsAfterOpening() {
         showViewsAfterOpening = true;
     }
@@ -2709,7 +2714,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
             return;
         }
         if (messageObject.type == MessageObject.TYPE_STORY_MENTION) {
-            TL_stories.StoryItem storyItem =  messageObject.messageOwner.media.storyItem;
+            TL_stories.StoryItem storyItem = messageObject.messageOwner.media.storyItem;
             storyItem.dialogId = DialogObject.getPeerDialogId(messageObject.messageOwner.media.peer);
             storyItem.messageId = messageObject.getId();
             open(fragment.getContext(), messageObject.messageOwner.media.storyItem, StoriesListPlaceProvider.of(recyclerListView));
@@ -2875,12 +2880,17 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         public boolean checkParentScale;
         public int storyId;
 
+        public Float radius;
+
         public Integer getAvatarImageRoundRadius() {
+            float scale = 1f;
+            if (checkParentScale && view != null && view.getParent() != null) {
+                scale = ((ViewGroup) (view.getParent())).getScaleY();
+            }
+            if (radius != null) {
+                return (int) (radius * scale);
+            }
             if (avatarImage != null) {
-                float scale = 1f;
-                if (checkParentScale && view != null && view.getParent() != null) {
-                    scale = ((ViewGroup) (view.getParent())).getScaleY();
-                }
                 return (int) (avatarImage.getRoundRadius()[0] * scale);
             }
             return null;
